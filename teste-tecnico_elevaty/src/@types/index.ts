@@ -5,14 +5,14 @@ export interface ClientsType {
   email: string
   birthday: string
   phone: string
-  address: string
-  creditCard: {
+
+  creditCards: {
     number: string
     expiration: string
     type: string
-    owner: string
-  }, 
-  addresses: {
+  }
+
+  address: {
     street: string
     streetName: string
     buildingNumber: string,
