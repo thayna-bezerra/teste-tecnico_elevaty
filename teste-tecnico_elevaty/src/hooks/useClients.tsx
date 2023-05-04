@@ -31,6 +31,7 @@ export function useClient(startBirthday: string, endBirthday: string) {
   return {
     clients,
     filteredClients,
+    setFilteredClients,
     isFetching,
     handleButtonSearchClick
   };
