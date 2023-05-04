@@ -1,30 +1,40 @@
-import { ReactNode, createContext, useCallback, useEffect, useState } from 'react'
-import { ClientsType } from '../@types'
-import axios from 'axios'
+// import { useEffect, useState } from 'react'
+// import { ClientsType } from '../@types'
+// import axios from 'axios'
 
-type ClientsProps = {
-  clients: ClientsType[]
-}
+// // type Clients = {
+// //   clients: ClientsType[]
+// // }
 
-type ClientsProviderProps = {
-  children?: ReactNode
-}
+// // interface ClientsProps {
+// //   startBirthday?: Date
+// //   endBirthday?: Date
+// // }
 
-export const Clients = createContext({} as ClientsProps)
+// export function useClient({ startBirthday, endBirthday}: ClientsProps) {
+//   // const [clients, setClients] = useState<ClientsType[]>()
 
-export function useClient() {
-  const [clients, setClients] = useState<ClientsType[]>()
+//   // useEffect(() => {
+//   //   ;(async () => {
+//   //     await axios
+//   //       .get('https://fakerapi.it/api/v1/persons?_quantity=10&_birthday_start=${birthdayStart}&_birthday_end=${birthdayEnd}')
+//   //       .then((response) => response.data.data)
+//   //       .then((data: any) => setClients(data))
+//   //       .catch(() => {})
+//   //   })()
+//   // }, [startBirthday, endBirthday])
 
-  useEffect(() => {
-    ;(async () => {
-      await axios
-        .get('https://fakerapi.it/api/v1/persons')
-        .then((response) => response.data.data)
-        .then((data: any) => setClients(data))
-        .catch(() => {})
-    })()
-  }, [])
+//   const filteredClients = clients?.filter((client) => {
+//     const birthdate = new Date(client.birthday);
+//     if (!startBirthday || !endBirthday) {
+//       return true; // retorna verdadeiro para todas as datas se as datas de início e fim não foram definidas
+//     }
+//     const startDate = new Date(startBirthday);
+//     const endDate = new Date(endBirthday);
+//     return birthdate >= startDate && birthdate <= endDate;
+//   });
+  
 
-  return { clients }
+//   return { clients, filteredClients }
 
-}
+// }
