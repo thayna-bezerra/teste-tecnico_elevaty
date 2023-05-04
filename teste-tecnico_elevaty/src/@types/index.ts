@@ -6,10 +6,19 @@ export interface ClientsType {
   birthday: string
   phone: string
   address: string
-}
-
-export interface CreditCardsType {
-  type: string
-  number: string
-  expiration: string
+  creditCard: {
+    number: string
+    expiration: string
+    type: string
+    owner: string
+  }, 
+  addresses: {
+    street: string
+    streetName: string
+    buildingNumber: string,
+    city: string
+    zipcode: number
+    country: string
+    county_code: string
+  }
 }
