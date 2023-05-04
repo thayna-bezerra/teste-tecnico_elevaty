@@ -1,40 +1,37 @@
-// import { useEffect, useState } from 'react'
-// import { ClientsType } from '../@types'
-// import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { ClientsType } from '../@types';
+import axios from 'axios';
 
-// // type Clients = {
-// //   clients: ClientsType[]
-// // }
+export function useClient(startBirthday: string, endBirthday: string) {
+  const [isFetching, setIsFetching] = useState(false);
+  const [clients, setClients] = useState<ClientsType[]>();
+  const [filteredClients, setFilteredClients] = useState<ClientsType[]>();
 
-// // interface ClientsProps {
-// //   startBirthday?: Date
-// //   endBirthday?: Date
-// // }
+  useEffect(() => {
+    if (isFetching) {
+      axios
+        .get(`https://fakerapi.it/api/v1/persons?_quantity=10&_birthday_start=${startBirthday}&_birthday_end=${endBirthday}`)
+        .then((response) => response.data.data)
+        .then((data: any) => {
+          setFilteredClients(data);
+          setIsFetching(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [isFetching, startBirthday, endBirthday]);
 
-// export function useClient({ startBirthday, endBirthday}: ClientsProps) {
-//   // const [clients, setClients] = useState<ClientsType[]>()
+  useEffect(() => {
+    setClients(filteredClients);
+  }, [filteredClients]);
 
-//   // useEffect(() => {
-//   //   ;(async () => {
-//   //     await axios
-//   //       .get('https://fakerapi.it/api/v1/persons?_quantity=10&_birthday_start=${birthdayStart}&_birthday_end=${birthdayEnd}')
-//   //       .then((response) => response.data.data)
-//   //       .then((data: any) => setClients(data))
-//   //       .catch(() => {})
-//   //   })()
-//   // }, [startBirthday, endBirthday])
+  function handleButtonSearchClick() {
+    setIsFetching(true);
+  }
 
-//   const filteredClients = clients?.filter((client) => {
-//     const birthdate = new Date(client.birthday);
-//     if (!startBirthday || !endBirthday) {
-//       return true; // retorna verdadeiro para todas as datas se as datas de início e fim não foram definidas
-//     }
-//     const startDate = new Date(startBirthday);
-//     const endDate = new Date(endBirthday);
-//     return birthdate >= startDate && birthdate <= endDate;
-//   });
-  
-
-//   return { clients, filteredClients }
-
-// }
+  return {
+    clients,
+    filteredClients,
+    isFetching,
+    handleButtonSearchClick
+  };
+}

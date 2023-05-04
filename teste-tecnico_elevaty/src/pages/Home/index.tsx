@@ -3,18 +3,14 @@ import elevatyLogo from '../../assets/elevatyLogo.png';
 import { MagnifyingGlass, CaretDown, Trash } from 'phosphor-react'
 
 import { ButtonSearch, HeaderContainer, Table, FormStyles, ButtonActions } from './styles'
-import { useEffect, useState } from 'react'
-import { ClientsType } from '../../@types'
-import axios from 'axios'
+import { useClient } from '../../hooks/useClients';
+import { useState } from 'react';
 
 export function Home( ) {
   const [startBirthday, setStartBirthday] = useState("1990-01-01");
   const [endBirthday, setEndBirthday] = useState("2000-12-31");
-
-  const [isFetching, setIsFetching] = useState(false);
   
-  const [clients, setClients] = useState<ClientsType[]>()
-  const [filteredClients, setFilteredClients] = useState<ClientsType[]>();
+  const { clients, filteredClients, isFetching, handleButtonSearchClick } = useClient(startBirthday, endBirthday);
 
   function handleStartBirthdayChange(event: React.ChangeEvent<HTMLInputElement>) {
     setStartBirthday(event.target.value);
@@ -23,27 +19,6 @@ export function Home( ) {
   function handleEndBirthdayChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEndBirthday(event.target.value);
   }
-
-  function handleButtonSearchClick() {
-    setIsFetching(true)
-  }
-
-  useEffect(() => {
-    if (isFetching) {
-      axios
-        .get(`https://fakerapi.it/api/v1/persons?_quantity=10&_birthday_start=${startBirthday}&_birthday_end=${endBirthday}`)
-        .then((response) => response.data.data)
-        .then((data: any) => {
-          setFilteredClients(data)
-          setIsFetching(false)
-        })
-        .catch(error => console.log(error));
-    }
-  }, [isFetching, startBirthday, endBirthday]);
-
-  useEffect(() => {
-    setClients(filteredClients);
-  }, [filteredClients]);
 
   return (
     <>
