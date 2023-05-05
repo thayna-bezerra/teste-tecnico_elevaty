@@ -1,4 +1,67 @@
 import styled from 'styled-components';
+import { Disclosure } from '@headlessui/react';
+
+export const StyledDisclosureButton = styled(Disclosure.Button)`
+  border: none;
+  outline: none;
+  padding: 8px 16px; 
+  background-color: ${(props) => props.theme['gray_200']};
+  color: ${(props) => props.theme['white']};
+    
+  white-space: nowrap;
+  padding: 1.5rem;
+  width: 100%;
+  
+  border-top: 4px solid ${(props) => props.theme['bg_color']};
+
+  font-size: 0.875rem;
+  line-height: 1.25rem; 
+    
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  border: none;
+  border-top: 4px solid ${(props) => props.theme['bg_color']};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme['gray_300']};
+    :focus {
+      outline: none;
+    }
+  }
+`;
+
+export const SecondStyledDisclosureButton = styled(Disclosure.Button)`
+  background-color:  #F8AE2E;
+  color: ${(props) => props.theme['gray_200']};  
+
+  margin-top: 18px;
+  width: 18rem;
+  border-radius: 10px;
+  display: flex;
+  outline: none;
+  padding: 1rem;
+  gap: 8px;
+  
+  font-size: 0.875rem;
+    
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  border: none;
+  border: 4px solid ${(props) => props.theme['bg_color']};
+  cursor: pointer;
+
+  &:hover {
+    background-color: #FFC55F;
+    :focus {
+      outline: none;
+    }
+  }
+`;
 
 export const Table = styled.table`
   flex: 1;  
@@ -43,38 +106,38 @@ export const Table = styled.table`
         padding-left: 1.5rem;
       }
     }
-    
-    button {  
-      border: none;
-      outline: none;
-      padding: 8px 16px; 
-      background-color: ${(props) => props.theme['gray_200']};
-      color: ${(props) => props.theme['white']};
-        
-      white-space: nowrap;
-      padding: 1.5rem;
-      width: 100%;
+/*     
+  button {  
+    border: none;
+    outline: none;
+    padding: 8px 16px; 
+    background-color: ${(props) => props.theme['gray_200']};
+    color: ${(props) => props.theme['white']};
       
-      border-top: 4px solid ${(props) => props.theme['bg_color']};
+    white-space: nowrap;
+    padding: 1.5rem;
+    width: 100%;
+    
+    border-top: 4px solid ${(props) => props.theme['bg_color']};
 
-      font-size: 0.875rem;
-      line-height: 1.25rem; 
-        
-      justify-content: center;
-      justify-items: center;
-      align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+      
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
 
-      border: none;
-      border-top: 4px solid ${(props) => props.theme['bg_color']};
-      cursor: pointer;
+    border: none;
+    border-top: 4px solid ${(props) => props.theme['bg_color']};
+    cursor: pointer;
 
-      &:hover {
-        background-color: ${(props) => props.theme['gray_300']};
-        :focus {
-          outline: none;
-        }
+    &:hover {
+      background-color: ${(props) => props.theme['gray_300']};
+      :focus {
+        outline: none;
       }
-  }     
+    }
+  }    */
 
   div {
     padding: 12px 16px; 
@@ -110,3 +173,6 @@ export const Table = styled.table`
     fill: #FF0000; 
   }
 `
+
+
+

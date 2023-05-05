@@ -1,9 +1,12 @@
 import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 import moment from 'moment';
 
-import { CaretDown, Trash } from 'phosphor-react';
+import elevatyLogo from '../../assets/elevatyLogo.png';
+import { CaretDown, Trash, File } from 'phosphor-react';
 import { Disclosure } from '@headlessui/react';
-import { Table } from './styles';
+import { Table, StyledDisclosureButton, SecondStyledDisclosureButton } from './styles';
 
 import { Header } from '../../components/Header';
 import { useClient } from '../../hooks/useClients';
@@ -15,12 +18,10 @@ export function Home() {
   const { clients, setFilteredClients, filteredClients, isFetching, handleButtonSearchClick } = useClient(startBirthday, endBirthday);
 
   function handleStartBirthdayChange(event: React.ChangeEvent<HTMLInputElement>) {
-    // const date = moment(event.target.value).format('DD/MM/YYYY')
     setStartBirthday(event.target.value);
   }
   
   function handleEndBirthdayChange(event: React.ChangeEvent<HTMLInputElement>) {
-    // const date = moment(event.target.value).format('DD/MM/YYYY')
     setEndBirthday(event.target.value);
   }
 
@@ -44,26 +45,30 @@ export function Home() {
   }) {
     const doc = new jsPDF();
 
-    doc.text('DADOS PESSOAIS:', 10, 10);
-    doc.text(`Nome Completo: ${firstname} ${lastname}`, 20, 20);
-    doc.text(`Email: ${email}`, 20, 30);
-    doc.text(`Data de nascimento: ${birthday}`, 20, 40);
-    doc.text(`Telefone: ${phone}`, 20, 50);
-    
-    doc.text('ENDEREÇO:', 10, 70);
-    doc.text(`Rua: ${streetName}`, 20, 80);
-    doc.text(`Cidade: ${city}`, 20, 90);
-    doc.text(`Código Postal: ${zipcode}`, 20, 100);
+    doc.addImage(elevatyLogo, 'PNG', 70, 10, 60, 10);
+    doc.setFontSize(12);
 
-    doc.text('CARTÃO DE CRÉDITO:', 10, 120);
-    doc.text(`Número do Cartão: ${number}`, 20, 130);
-    doc.text(`Data de Expiração: ${expiration}`, 20, 140);
-    doc.text(`Bandeira: ${type}`, 20, 150);
+    doc.text('DADOS PESSOAIS:', 10, 40);
+    doc.text(`Nome Completo: ${firstname} ${lastname}`, 20, 50);
+    doc.text(`Email: ${email}`, 20, 60);
+    doc.text(`Data de nascimento: ${birthday}`, 20, 70);
+    doc.text(`Telefone: ${phone}`, 20, 80);
+    
+    doc.text('ENDEREÇO:', 10, 100);
+    doc.text(`Rua: ${streetName}`, 20, 110);
+    doc.text(`Cidade: ${city}`, 20, 120);
+    doc.text(`Código Postal: ${zipcode}`, 20, 130);
+
+    doc.text('CARTÃO DE CRÉDITO:', 10, 150);
+    doc.text(`Número do Cartão: ${number}`, 20, 160);
+    doc.text(`Data de Expiração: ${expiration}`, 20, 170);
+    doc.text(`Bandeira: ${type}`, 20, 180);
   
     doc.setProperties({
       title: `Fatura Elevaty - ${firstname}`
     });
-  
+
+    doc.save(`faturaElevaty_${firstname}.pdf`);
     window.open(doc.output('bloburl'), '_blank');
   }
 
@@ -92,14 +97,13 @@ export function Home() {
           <Disclosure key={item.id}>
             {({  }) => (
               <>
-                <Disclosure.Button>
+                <StyledDisclosureButton>
                     <td key={item.id}>{item.firstname + ' ' + item.lastname}</td>                        
                     <td>{moment(item.birthday).format('DD/MM/YYYY')}</td>
                     
                     <td><span><CaretDown size={23} weight="bold" color='#808080' /></span></td> 
-
                     <td><span onClick={() => handleDeleteClick(item.id)}><Trash size={23} weight="fill" color='#808080'/></span></td>                    
-                </Disclosure.Button>
+                </StyledDisclosureButton>
 
                 <Disclosure.Panel > 
                   <p><strong>Dados Pessoais:</strong></p>                   
@@ -120,7 +124,7 @@ export function Home() {
                   <p>Data de expiração: {item.creditCard.expiration}</p>
                   <p>Bandeira: {item.creditCard.type}</p>
 
-                  <Disclosure.Button 
+                  <SecondStyledDisclosureButton
                     onClick={() => generatePDF({
                       firstname: item.firstname,
                       lastname: item.lastname,
@@ -135,8 +139,9 @@ export function Home() {
                       type: item.creditCard.type
                     })}
                   >
-                    Gerar PDF
-                  </Disclosure.Button>
+                    <File size={18} weight="regular" color='#333' />
+                    <strong>Gerar PDF</strong> 
+                  </SecondStyledDisclosureButton>
                 </Disclosure.Panel>
               </>
             )}
