@@ -7,9 +7,7 @@ Sistema onde é possível buscar clientes por sua data de
 nascimento, mostrar os dados desses clientes, os cartões de crédito e baixar o PDF
 da fatura.
 
-<h5 align="center">
-  <img src="https://user-images.githubusercontent.com/58120519/236250621-9c00d63a-f003-4d8a-85ec-deed93addfac.jpeg" width="700" >
-</h5>
+<h3 align="center" width="700"><img src="https://user-images.githubusercontent.com/58120519/236438779-905b3194-c26a-4913-b5b2-3c744117e30f.gif"></h3>
 
 ## Projeto
 - [Visite o projeto online](https://elevaty.vercel.app)
