@@ -12,6 +12,7 @@ export const HeaderContainer = styled.header `
     height: 2.375rem;
   }
 `
+
 export const FormStyles = styled.form `
   display: flex;
   align-items: center;
@@ -33,10 +34,19 @@ export const FormStyles = styled.form `
     align-items: center;
 
     &::-webkit-calendar-picker-indicator {
-      color: ${(props) => props.theme['gray_100']};
+      filter: invert(1);
+      opacity: 70%;
+      padding-right: 0.9rem;            
+    }
+
+    &::-webkit-calendar-picker-indicator:hover {
+      filter: invert(1);
+      opacity: 100%;
+      padding-right: 0.9rem;
     }
   }
 `
+
 export const ButtonSearch = styled.button `
   width: 3.320rem;
   height: 3.320rem;

@@ -5,11 +5,14 @@ export const Table = styled.table`
   width: 60rem;
   border-collapse: collapse;
   color: ${(props) => props.theme['white']};  
+
   border-spacing: 0px;
   margin-top: 50px;
   margin-left: 198px;
+
   display: flex;
   flex-direction: column;
+
   & > thead {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px; 
@@ -25,6 +28,7 @@ export const Table = styled.table`
     text-align: center;
     padding-left: 10%;
     min-width: 15rem;
+
     font-size: 0.975rem;
     line-height: 1.25rem;    
     justify-content: space-between;
@@ -39,31 +43,38 @@ export const Table = styled.table`
         padding-left: 1.5rem;
       }
     }
-  
-  button {       
-    padding: 8px 16px; 
-    background-color: ${(props) => props.theme['gray_200']};
-    color: ${(props) => props.theme['white']};
-       
-    white-space: nowrap;
-    padding: 1.5rem;
-    width: 100%;
     
-    border-top: 4px solid ${(props) => props.theme['bg_color']};
-    font-size: 0.875rem;
-    line-height: 1.25rem;    
-    justify-content: space-between;
-    
-    border: none;
-    border-top: 4px solid ${(props) => props.theme['bg_color']};
-    cursor: pointer;
-    &:hover {
+    button {  
+      border: none;
+      outline: none;
+      padding: 8px 16px; 
+      background-color: ${(props) => props.theme['gray_200']};
+      color: ${(props) => props.theme['white']};
+        
+      white-space: nowrap;
+      padding: 1.5rem;
+      width: 100%;
+      
+      border-top: 4px solid ${(props) => props.theme['bg_color']};
+
+      font-size: 0.875rem;
+      line-height: 1.25rem; 
+        
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+
+      border: none;
+      border-top: 4px solid ${(props) => props.theme['bg_color']};
+      cursor: pointer;
+
+      &:hover {
         background-color: ${(props) => props.theme['gray_300']};
         :focus {
           outline: none;
         }
       }
-  }    
+  }     
 
   div {
     padding: 12px 16px; 
@@ -76,15 +87,26 @@ export const Table = styled.table`
 
   & > tbody> button > td{
     min-width: 15.5rem;
+    max-height: 0.5rem;
   }
-`
-export const ButtonActions = styled.button`
-  align-items: center;
-  width: 1.625rem;
-  height: 1.625rem;
 
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
+  & > tbody> button > td > span {
+    max-width: 0.5rem;
+    padding:  0 0 0 0;
+    margin: 0 0 0 0;
+    border: none;   
+    background-color: transparent; 
+    box-shadow: none;      
+    outline: none;       
+  }
+
+  & > tbody> button > td > span:hover > svg path {
+    max-width: 0.5rem;
+    border: none;   
+    background-color: transparent; 
+    box-shadow: none;      
+    outline: none; 
+    
+    fill: #FF0000; 
+  }
 `

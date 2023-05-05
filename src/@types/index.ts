@@ -1,18 +1,18 @@
-export interface ClientsType {
+export interface ClientsType {  
   id: number
   firstname: string
   lastname: string
   email: string
   birthday: string
   phone: string
-
-  creditCards: {
+  address: string 
+  creditCard: {
     number: string
     expiration: string
     type: string
-  }
-
-  address: {
+    owner: string
+  }, 
+  addresses: {
     street: string
     streetName: string
     buildingNumber: string,
