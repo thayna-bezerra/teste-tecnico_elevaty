@@ -11,8 +11,12 @@ da fatura.
   <img src="https://user-images.githubusercontent.com/58120519/236250621-9c00d63a-f003-4d8a-85ec-deed93addfac.jpeg" width="700" >
 </h5>
 
+## Projeto
+- [Visite o projeto online](https://elevaty.vercel.app)
+
 ## Instalação
-npm version: v8.19.4
+<h6>npm version: v8.19.4</h6>
+npm install
 
 ## Tecnologias
 
